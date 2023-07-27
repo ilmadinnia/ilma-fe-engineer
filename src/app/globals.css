@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background: #F7F8FE;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #F7F8FE;
+}
+
+.star-rating {
+  font-size: 24px; /* Adjust the size as needed */
+  display: flex;
+  align-items: center;
+}
+
+.star-filled::before {
+  content: '\2605'; /* Filled star character (★) */
+  color: #8D4890; /* Change the color of the filled stars */
+}
+
+.star-empty::before {
+  content: '\2606'; /* Empty star character (☆) */
+  color: #8D4890; /* Change the color of the empty stars */
+}
