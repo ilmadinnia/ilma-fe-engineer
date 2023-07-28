@@ -78,18 +78,14 @@ const CartDetail: React.FC<IProductCartParams> = ({ id, products, totalProducts,
                             <th className="p-4 text-left font-semibold">Product Name</th>
                             <th className="p-4 text-left font-semibold">Brand</th>
                             <th className="p-4 text-left font-semibold">Price</th>
-                            <th className="p-4 text-left font-semibold">Stock</th>
-                            <th className="p-4 text-left font-semibold">Category</th>
                         </tr>
                     </thead>
                     <tbody className="text-xs capitalize">
                         {products?.map((product, index) => (
                             <tr className="border-b-2" key={index}>
                                 <td className="p-4">{product.title}</td>
-                                <td className="p-4">{ }</td>
                                 <td className="p-4">${product.price}</td>
                                 <td className="p-4">{product.quantity}</td>
-                                <td className="p-4">Category Name</td>
                             </tr>
                         ))}
                     </tbody>
@@ -99,25 +95,5 @@ const CartDetail: React.FC<IProductCartParams> = ({ id, products, totalProducts,
         </div>
     );
 };
-
-export async function getServerSideProps(context: any) {
-    try {
-        // Access the 'id' parameter from the URL query
-        const { id } = context.query;
-
-        const response = await fetch(`https://dummyjson.com/carts/${id}`);
-        const data: IProductCartParams = await response.json();
-
-        // Pass the fetched data as props to the component
-        return {
-            props: {
-                ...data,
-            },
-        };
-    } catch (error) {
-        console.error('Error fetching cart detail:', error);
-        return {};
-    }
-}
 
 export default CartDetail;

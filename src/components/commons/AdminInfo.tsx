@@ -8,7 +8,7 @@ import Profile from '@assets/images/profile.png';
 function AdminInfo(): React.ReactElement {
     return (
         <>
-            <div className="bg-white text-black mx-4 py-4 font-customFont">
+            <div className="bg-white text-black mx-4 py-4 mt-20 font-customFont">
                 <div className="flex items-center">
                     <div className="rounded-full shadow-md mx-2">
                         <Image
