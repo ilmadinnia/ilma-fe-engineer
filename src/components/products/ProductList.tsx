@@ -49,25 +49,22 @@ const ProductList = () => {
   const [isDataEmpty, setIsDataEmpty] = useState(false);
   const [minPrice, setMinPrice] = useState<number>(0);
   const [maxPrice, setMaxPrice] = useState<number>(3000);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [products, setProducts] = useState<IProductListParams[]>([]);
+
 
   const fetchData = useCallback(async (page: number) => {
     try {
-      // Construct the search URL with the query parameters and updated page number
       const searchURL = `https://dummyjson.com/products/search?q=${searchQuery}&brand=${brandSearchQuery}&minPrice=${minPrice}&maxPrice=${maxPrice}&category=${selectedCategory}&skip=${(page - 1) * itemsPerPage}&limit=${itemsPerPage}`;
-
-      // Fetch the data from the API using the search URL
       const response = await fetch(searchURL);
       const jsonData: Response = await response.json();
 
-      // Update the state with the search results and the new total pages
-      setData(jsonData.products);
+      setProducts(jsonData.products);
       setTotal(jsonData.total);
 
-      // Check if the filteredData is empty
       const isEmpty = jsonData.products.length === 0;
       setIsDataEmpty(isEmpty);
 
-      // Update the current page if it exceeds the new total pages
       setCurrentPage(prevCurrentPage =>
         Math.min(prevCurrentPage, Math.ceil(jsonData.total / itemsPerPage))
       );
@@ -76,21 +73,19 @@ const ProductList = () => {
     }
   }, [searchQuery, brandSearchQuery, minPrice, maxPrice, selectedCategory, itemsPerPage]);
 
-
   const handleSearch = () => {
     setCurrentPage(1);
     fetchData(1);
   };
+
   useEffect(() => {
     fetchData(currentPage);
   }, [fetchData, currentPage]);
 
-
-  const filteredData = datas.filter((product) => {
+  const filteredData = products.filter((product) => {
     const { title, brand, category, price } = product;
     const lowerSearchQuery = searchQuery.toLowerCase();
     const lowerBrandSearchQuery = brandSearchQuery.toLowerCase();
-
 
     const brandMatches = brand?.toLowerCase().includes(lowerBrandSearchQuery);
     const generalMatches =
@@ -99,9 +94,9 @@ const ProductList = () => {
     const productPrice = price || 0;
     const priceInRange = productPrice >= minPrice && productPrice <= maxPrice;
     const categoryMatches = selectedCategory === "" || category === selectedCategory;
+
     return brandMatches && generalMatches && priceInRange && categoryMatches;
   });
-
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -126,7 +121,6 @@ const ProductList = () => {
     const newMaxPrice = Number(event.target.value);
     setMaxPrice(newMaxPrice);
   };
-
 
   return (
     <div className="bg-white xl:m-8 xl:mt-32 xl:w-10/12 xl:shadow-md xl:rounded-xl text-black  m-0">
