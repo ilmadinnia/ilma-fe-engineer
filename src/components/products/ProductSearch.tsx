@@ -39,7 +39,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({
                     />
                 </div>
                 {/* Add inputs for minimum and maximum price */}
-                <div className="xl:mx-4 xl:flex grid text-xs items-center xl:my-0 my-2">
+                {/* <div className="xl:mx-4 xl:flex grid text-xs items-center xl:my-0 my-2">
                     <div className='px-2 f'>Filter Price :</div>
                     <input
                         type="number"
@@ -59,7 +59,7 @@ const ProductSearch: React.FC<ProductSearchProps> = ({
                         min={0}
                         onChange={handleMaxPriceChange}
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );
