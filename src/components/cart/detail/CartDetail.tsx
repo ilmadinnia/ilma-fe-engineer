@@ -76,7 +76,7 @@ const CartDetail: React.FC<IProductCartParams> = ({ id, products, totalProducts,
                     <thead className="bg-gray-100 p-8 text-xs">
                         <tr>
                             <th className="p-4 text-left font-semibold">Product Name</th>
-                            <th className="p-4 text-left font-semibold">Brand</th>
+                            <th className="p-4 text-left font-semibold">Quantity</th>
                             <th className="p-4 text-left font-semibold">Price</th>
                         </tr>
                     </thead>
@@ -84,8 +84,8 @@ const CartDetail: React.FC<IProductCartParams> = ({ id, products, totalProducts,
                         {products?.map((product, index) => (
                             <tr className="border-b-2" key={index}>
                                 <td className="p-4">{product.title}</td>
-                                <td className="p-4">${product.price}</td>
                                 <td className="p-4">{product.quantity}</td>
+                                <td className="p-4">${product.price}</td>
                             </tr>
                         ))}
                     </tbody>

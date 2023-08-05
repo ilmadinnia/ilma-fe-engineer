@@ -21,7 +21,7 @@ function Header(): React.ReactElement {
               />
             </div>
           </Link>
-          <div className="align-right mr-10">
+          <div className="align-right mr-10 text-white">
             <span>Ilma Dinnia Alghani</span>
           </div>
         </div>

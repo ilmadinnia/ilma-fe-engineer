@@ -37,7 +37,8 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, currentPage, item
 
     const calculateItemNumber = (currentPage: number, index: number) => {
         return (currentPage - 1) * itemsPerPage + index + 1;
-    };
+      };
+    
     // Sort the products based on the sortColumn and sortOrder
     const sortedProducts = products.slice().sort((a, b) => {
         const valueA = a[sortColumn];
